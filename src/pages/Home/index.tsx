@@ -114,6 +114,8 @@ export default function Home() {
 
   useEffect(() => {
     const signerContract = contract?.connect(signer)
+    // console.log(signerContract?.totalSupply())
+
     if (!account) {
       return
     }
@@ -122,6 +124,8 @@ export default function Home() {
     })
   }, [account])
   const mint = async () => {
+    console.log('account:' + account + 'signer' + signer + 'totalsupply' + totalsupply)
+
     if (!account) {
       setIsShoWallet(true)
       return
@@ -136,11 +140,11 @@ export default function Home() {
       setOpen(true)
       return
     }
-    if(Number(currentTime)>=1000){
-      setErrMsg("It’s not available to mint.")
+    if (Number(currentTime) >= 1000) {
+      setErrMsg('It’s not available to mint.')
       setOpen(true)
       return
-    }else{
+    } else {
     }
 
     if (mintNum === 0) {
@@ -148,12 +152,12 @@ export default function Home() {
       setOpen(true)
       return
     }
-    const isWhiteAddress = await postWhiteList({ address: account ?? '' })
-    if (!isWhiteAddress.data.status) {
-      setErrMsg('No purchase permission')
-      setOpen(true)
-      return
-    }
+    // const isWhiteAddress = await postWhiteList({ address: account ?? '' })
+    // if (!isWhiteAddress.data.status) {
+    //   setErrMsg('No purchase permission')
+    //   setOpen(true)
+    //   return
+    // }
 
     const ownerBalanceOf = await signerContract?.balanceOf(account)
     const isActiveMint = await signerContract?._isSaleActive()
@@ -261,7 +265,7 @@ export default function Home() {
     if (mintNum < 3) {
       const arrs = mintNum + 1
       setMintNum(arrs)
-    }else{
+    } else {
       setErrMsg('1 wallet can only mint 3 avatars!')
       setOpen(true)
     }
@@ -275,16 +279,17 @@ export default function Home() {
     }
   }
   const toHHmmss = (data: number) => {
-    if(data<0){
+    if (data < 0) {
       return '00:00:00:00'
     }
     var time
-    var days = parseInt(((data / (1000 * 60 * 60 * 24))).toString())
+    var days = parseInt((data / (1000 * 60 * 60 * 24)).toString())
     var hours = parseInt(((data % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString())
     var minutes = parseInt(((data % (1000 * 60 * 60)) / (1000 * 60)).toString())
     var seconds = parseInt(((data % (1000 * 60)) / 1000).toString())
     time =
-    (days < 10 ? '0' + days : days) + ':' +
+      (days < 10 ? '0' + days : days) +
+      ':' +
       (hours < 10 ? '0' + hours : hours) +
       ':' +
       (minutes < 10 ? '0' + minutes : minutes) +
@@ -305,15 +310,15 @@ export default function Home() {
 
   useEffect(() => {
     let timesInterval = setInterval(() => {
-    const openMint = 1645804800000
+      const openMint = 1645804800000
 
       currTime = currTime + 1000
       showCountdown(currTime)
-     if((openMint-currTime)<=1000){
-      setIsShowTime(false)
+      if (openMint - currTime <= 1000) {
+        setIsShowTime(false)
 
-      clearInterval(timesInterval )
-     }
+        clearInterval(timesInterval)
+      }
     }, 1000)
   }, [])
   const showMiddle = () => {
@@ -323,10 +328,12 @@ export default function Home() {
           <img className="mint-img" src={mint_img} alt="" />
           <img className="mastmarsk-img" src={mastmarsk} />
           <img className="buy-img" src={buy} />
-          {isShowTime?<div className="time-img-box">
-            <img className="time-img" src={MintStartIn} />
-            <span>{times}</span>
-          </div>:null}
+          {isShowTime ? (
+            <div className="time-img-box">
+              <img className="time-img" src={MintStartIn} />
+              <span>{times}</span>
+            </div>
+          ) : null}
           <img className="taranstr-img" src={taranstr} />
         </div>
       )
@@ -343,17 +350,19 @@ export default function Home() {
         <div className="open-site">
           <img className="Blackbackground-img" src={Blackbackground} alt="" />
           <img className="buy-img" src={buy} />
-          {isShowTime?<div className="time-img-box">
-            <img className="time-img" src={CounDown} />
-            <span>{times}</span>
-          </div>:null}
+          {isShowTime ? (
+            <div className="time-img-box">
+              <img className="time-img" src={CounDown} />
+              <span>{times}</span>
+            </div>
+          ) : null}
           <div className="body_text_box">
             {totalsupply}/
             <img className="body_text-img" src={body_text} />
           </div>
 
           <img className="out-img" src={out} onClick={outnum} />
-          <p >{mintNum}</p>
+          <p>{mintNum}</p>
           <img className="up-img" src={up} onClick={but} />
           <img className="Mint_two-img" src={Mint_two} onClick={mint} />
         </div>
@@ -417,7 +426,6 @@ export default function Home() {
     return walletView === WALLET_VIEWS.PENDING ? (
       pendingError ? (
         <div className="open-site">
-
           <img className="mint-img" src={mint_img} alt="" />
           <img
             className="mastmarsk-img"
@@ -444,10 +452,12 @@ export default function Home() {
       <div className="open-site walletStatus">
         <img className="buy-img" src={buy} />
         <img className="mint-img" src={mint_img} alt="" />
-        {isShowTime?<div className="time-img-box">
+        {isShowTime ? (
+          <div className="time-img-box">
             <img className="time-img" src={MintStartIn} />
             <span>{times}</span>
-          </div>:null}
+          </div>
+        ) : null}
         <img
           className="mastmarsk-img"
           src={mastmarsk}
@@ -477,7 +487,11 @@ export default function Home() {
             <a href="https://opensea.io/collection/dreamcardbimbos" target="_blank" rel="noreferrer">
               <img src={opensea} />
             </a>
-            <a href="https://etherscan.io/address/0xbbE2c8a388c2e5D99A8bf65985a2C9C7dcd0941D" target="_blank" rel="noreferrer">
+            <a
+              href="https://etherscan.io/address/0xbbE2c8a388c2e5D99A8bf65985a2C9C7dcd0941D"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img src={etherscan} />
             </a>
           </div>
@@ -519,7 +533,7 @@ export default function Home() {
           </div>
         </div>
         <div className="wrap-bottom">
-          <img src={footerImg} alt="" className="warpbottom-img"/>
+          <img src={footerImg} alt="" className="warpbottom-img" />
         </div>
         <Dialog
           open={open}

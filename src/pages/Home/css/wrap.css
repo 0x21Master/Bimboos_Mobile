@@ -461,8 +461,8 @@
 }
 .open-site .body_text_box {
   position: absolute;
-  left: 20rem;
-  top: 15rem;
+  left: 5rem;
+  top: -3rem;
   font-size: 4rem /* 40/16 */;
   color: #fff;
   display: flex;
@@ -741,9 +741,9 @@ body {
   html .open-site .body_text-img,
   body .open-site .body_text-img {
     width: 10rem;
-    position: absolute;
-    left: 9rem;
-    top: -3.5rem;
+    /* position: absolute; */
+    left: 7rem;
+    top: 0rem;
   }
   html .open-site .out-img,
   body .open-site .out-img {
@@ -861,9 +861,9 @@ body {
   html .open-site .body_text-img,
   body .open-site .body_text-img {
     width: 10rem;
-    position: absolute;
-    left: 9rem;
-    top: -3.5rem;
+    /* position: absolute; */
+    left: 7rem;
+    top:0rem;
   }
   html .open-site .out-img,
   body .open-site .out-img {

@@ -484,7 +484,7 @@ export default function Home() {
             <a href="https://discord.gg/xworldgames" target="_blank" rel="noreferrer">
               <img src={discord} />
             </a>
-            <a href="https://opensea.io/collection/dreamcardbimbos" target="_blank" rel="noreferrer">
+            <a href="https://opensea.io/collection/dream-card-bimbos-v2" target="_blank" rel="noreferrer">
               <img src={opensea} />
             </a>
             <a

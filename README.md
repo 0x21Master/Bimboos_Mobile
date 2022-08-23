@@ -2,7 +2,7 @@
 
 ## Main Method:
 
-### mint
+### Mint
 
 - click mint to minet if not start alert It’s not available to mint
 - If times up not strat alert Not yet on sale （need manually open etherscan use contract ABI write method flipSaleActive open need owner address）
